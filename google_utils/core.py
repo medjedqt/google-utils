@@ -4,7 +4,7 @@ from typing import List
 import urllib
 
 from .result import Result
-from .error import InvalidCalculation
+from .error import InvalidCalculation, InvalidPhrase, InvalidLocation
 
 class Google:
 	
@@ -53,10 +53,13 @@ class Google:
 	@classmethod
 	def define(self, query: str):
 		req = self.__request('define '+query)
-		phrase = req.find('div', class_="BNeawe deIvCb AP7Wnd").text
-		pronunciation = req.find('div', class_="BNeawe tAd8D AP7Wnd").text
-		word_type = req.find('span', class_="r0bn4c rQMQod").text.strip()
-		meaning = req.find('div', class_="v9i61e").text
+		try:
+			phrase = req.find('div', class_="BNeawe deIvCb AP7Wnd").text
+			pronunciation = req.find('div', class_="BNeawe tAd8D AP7Wnd").text
+			word_type = req.find('span', class_="r0bn4c rQMQod").text.strip()
+			meaning = req.find('div', class_="v9i61e").text
+		except AttributeError:
+			raise InvalidPhrase(query)
 		kwargs = {
 			'phrase': phrase,
 			'pronun': pronunciation,
@@ -68,8 +71,11 @@ class Google:
 	@classmethod
 	def weather(self, query: str):
 		req = self.__request('weather '+query)
-		weather = req.find('div', class_="BNeawe tAd8D AP7Wnd").text
-		temperature = req.find('div', class_="BNeawe iBp4i AP7Wnd").text
+		try:
+			weather = req.find('div', class_="BNeawe tAd8D AP7Wnd").text
+			temperature = req.find('div', class_="BNeawe iBp4i AP7Wnd").text
+		except AttributeError:
+			raise InvalidLocation(query)
 		kwargs = {
 			'weather': weather,
 			'temp': temperature,
