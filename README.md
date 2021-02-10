@@ -28,4 +28,23 @@ Calculator:
 from google_utils import Google
 
 response = Google.calculate("64 to the power of six")
-print(response.answer)
+print(f"{response.question}\n{response.answer}")
+```
+
+Weather checking:
+
+```py
+from google_utils import Google
+
+response = Google.weather("san francisco in celcius")
+print(f"{response.weather} {response.temperature}")
+```
+
+Definition:
+
+```py
+from google_utils import Google
+
+response = Google.define("splendid")
+print(f"{response.phrase}, {response.type}\n{response.pronunciation}\n{response.meaning}")
+```
