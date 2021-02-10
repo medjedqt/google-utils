@@ -7,14 +7,22 @@ from .result import Result
 from .error import InvalidCalculation, InvalidPhrase, InvalidLocation
 
 class Google:
-	
+
 	def __request(query: str, params: str = ""):
 		url = "https://google.com/search?q="+urllib.parse.quote(query)+params
 		r = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
 		return bs(r.text, 'html.parser')
 
 	@classmethod
-	def search(self, query: str, is_safe: bool = False) -> List[Result]:
+	def search(self, query: str, is_safe: bool = False):
+		'''Returns a list of results
+		
+		Args:
+			query: Query to search for
+			is_safe: Whether to turn on strict safesearch
+
+		Returns:
+			List[:obj:`Result`]'''
 		if is_safe:
 			safe = "strict"
 		else:
@@ -38,6 +46,14 @@ class Google:
 
 	@classmethod
 	def calculate(self, query: str):
+		'''Calculates using google
+		
+		Args:
+			query: query of mathematical problem
+		
+		Returns:
+			:obj:`Result`
+		'''
 		req = self.__request(query)
 		try:
 			question = req.find('span', class_="BNeawe tAd8D AP7Wnd").text
@@ -52,6 +68,14 @@ class Google:
 
 	@classmethod
 	def define(self, query: str):
+		'''Define words and phrases using google
+		
+		Args:
+			query: query of word/phrase
+		
+		Returns:
+			:obj:`Result`
+		'''
 		req = self.__request('define '+query)
 		try:
 			phrase = req.find('div', class_="BNeawe deIvCb AP7Wnd").text
@@ -70,6 +94,14 @@ class Google:
 	
 	@classmethod
 	def weather(self, query: str):
+		'''Checks the weather using google
+		
+		Args:
+			query: location with optional time or celcius/fahrenheit preference
+		
+		Returns:
+			:obj:`Result`
+		'''
 		req = self.__request('weather '+query)
 		try:
 			weather = req.find('div', class_="BNeawe tAd8D AP7Wnd").text
