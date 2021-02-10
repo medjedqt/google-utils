@@ -1,13 +1,16 @@
+from typing import Optional
+
 class Result:
 	def __init__(self, **kwargs):
-		self.title = kwargs.get('title')
-		self.link = kwargs.get('link')
-		self.domain = kwargs.get('domain')
-		self.answer = kwargs.get('answer')
-		self.question = kwargs.get('question')
-		self.phrase = kwargs.get('phrase')
-		self.pronunciation = kwargs.get('pronun')
-		self.type = kwargs.get('type')
-		self.meaning = kwargs.get('meaning')
-		self.weather = kwargs.get('weather')
-		self.temperature = kwargs.get('temp')
+		'''Results returned from google.com'''
+		self.title: Optional[str] = kwargs.get('title')
+		self.link: Optional[str] = kwargs.get('link')
+		self.domain: Optional[str] = kwargs.get('domain')
+		self.answer: Optional[str] = kwargs.get('answer')
+		self.question: Optional[str] = kwargs.get('question')
+		self.phrase: Optional[str] = kwargs.get('phrase')
+		self.pronunciation: Optional[str] = kwargs.get('pronun')
+		self.type: Optional[str] = kwargs.get('type')
+		self.meaning: Optional[str] = kwargs.get('meaning')
+		self.weather: Optional[str] = kwargs.get('weather')
+		self.temperature: Optional[str] = kwargs.get('temp')
