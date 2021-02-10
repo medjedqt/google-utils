@@ -6,7 +6,6 @@ sphinx:
 formats: []
 
 python:
-  setup_py_install: true
   version: 3.8
   install:
     - requirements: docs/requirements.txt
