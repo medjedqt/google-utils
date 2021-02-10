@@ -49,3 +49,18 @@ class Google:
 			'question': question,
 		}
 		return Result(**kwargs)
+
+	@classmethod
+	def define(self, query: str):
+		req = self.__request('define '+query)
+		phrase = req.find('div', class_="BNeawe deIvCb AP7Wnd").text
+		pronunciation = req.find('div', class_="BNeawe tAd8D AP7Wnd").text
+		word_type = req.find('span', class_="r0bn4c rQMQod").text.strip()
+		meaning = req.find('div', class_="v9i61e").text
+		kwargs = {
+			'phrase': phrase,
+			'pronun': pronunciation,
+			'type': word_type,
+			'meaning': meaning,
+		}
+		return Result(**kwargs)
