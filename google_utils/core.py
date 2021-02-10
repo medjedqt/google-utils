@@ -64,3 +64,14 @@ class Google:
 			'meaning': meaning,
 		}
 		return Result(**kwargs)
+	
+	@classmethod
+	def weather(self, query: str):
+		req = self.__request('weather '+query)
+		weather = req.find('div', class_="BNeawe tAd8D AP7Wnd").text
+		temperature = req.find('div', class_="BNeawe iBp4i AP7Wnd").text
+		kwargs = {
+			'weather': weather,
+			'temp': temperature,
+		}
+		return Result(**kwargs)

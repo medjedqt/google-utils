@@ -9,3 +9,5 @@ class Result:
 		self.pronunciation = kwargs.get('pronun')
 		self.type = kwargs.get('type')
 		self.meaning = kwargs.get('meaning')
+		self.weather = kwargs.get('weather')
+		self.temperature = kwargs.get('temp')
