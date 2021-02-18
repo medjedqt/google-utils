@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setuptools.setup(
 	name="google-utils",
-	version="1.0.1",
+	version="1.0.2",
 	author="medjed",
 	author_email="imoshugi01@gmail.com",
 	description="A utility package to interact with google.com",
@@ -21,7 +21,8 @@ setuptools.setup(
 	],
 	packages=setuptools.find_packages(),
 	install_requires=[
-		"bs4"
+		"bs4",
+		"requests",
 	],
 	python_requires=">=3.6"
 )
