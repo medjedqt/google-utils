@@ -18,6 +18,7 @@ lib/
 lib64/
 parts/
 sdist/
+tests/
 var/
 wheels/
 pip-wheel-metadata/
@@ -130,4 +131,3 @@ dmypy.json
 
 # Misc
 .vscode/
-test.py
