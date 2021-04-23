@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setuptools.setup(
 	name="google-utils",
-	version="1.0.2",
+	version="1.0.3",
 	author="medjed",
 	author_email="imoshugi01@gmail.com",
 	description="A utility package to interact with google.com",
