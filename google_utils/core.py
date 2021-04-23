@@ -54,7 +54,7 @@ class Google:
 		Returns:
 			:obj:`Result`
 		'''
-		req = self.__request(query)
+		req = self.__request(f"calculate {query}")
 		try:
 			question = req.find('span', class_="BNeawe tAd8D AP7Wnd").text
 			ans = req.find('div', class_="BNeawe iBp4i AP7Wnd").text
